@@ -1,0 +1,76 @@
+<head>
+ <script>
+     alert("Para para inicar o jogo click no Ok");
+     alert("Regras: \n Papel Ganha da Pedra e Perde pra Tesoura;\n Pedra Ganha de Tesoura e Perde para;\n Tesoura Ganha de Papel e Perde para Pedra");
+	 alert("Escolha sua jogada:")
+
+    var contadorpc = 0
+	var contadorusuario = 0 
+	var verifed = 2;
+
+	function pedra(min , max){
+		var num = Math.random() * (max - min) + min;
+		
+		if(num > 2){
+			verifed = 1;
+			document.getElementById("ganho").innerHTML = "Você escolheu pedra e ganhou de tesoura";
+		}else if(num > 1){
+			document.getElementById("ganho").innerHTML = "Você escolheu pedra e empatou com pedra";
+		}else{
+			verifed = 0;
+			document.getElementById("ganho").innerHTML = "Você escolheu pedra e perdeu para papel";
+		}
+	}
+	function papel(min , max){
+		var num = Math.random() * (max - min) + min;
+		if(num > 2){
+			verifed = 0;
+			document.getElementById("ganho").innerHTML = "Você escolheu papel e perdeu para tesoura";
+		}else if(num > 1){
+			verifed = 1;
+			document.getElementById("ganho").innerHTML = "Você escolheu papel e ganhou de pedra";
+		}else{
+			document.getElementById("ganho").innerHTML = "Você escolheu papel e empatou com papel";
+		}
+	}
+	function tesoura(min , max){
+		var num = Math.random() * (max - min) + min;
+		if(num > 2){
+			document.getElementById("ganho").innerHTML = "Você escolheu tesoura e empatou com tesoura";
+		}else if(num > 1){
+			verifed = 0;
+			document.getElementById("ganho").innerHTML = "Você escolheu tesoura e perdeu para pedra";
+			
+		}else{
+			verifed = 1;
+			document.getElementById("ganho").innerHTML = "Você escolheu tesoura e ganhou de papel"; 
+		}
+	}
+	 console.log(contadorpc)
+	 console.log(contadorusuario)
+
+	 function placar(){
+	 	if(verifed == 1){
+	 		contadorusuario++;
+			document.getElementById("pontoPlayer").innerHTML = contadorusuario;
+	 	}else if(verifed == 0){
+	 		contadorpc++;
+	 		document.getElementById("pontoPC").innerHTML = contadorpc;
+	 	}
+	 }
+ </script>
+</head>
+<body bgcolor="grey">
+<div>
+
+
+<img src="papel.jpg" style="height:200px; margin-left: 300px;" onClick="papel(0,3); placar();">
+<img src="tesoura.jpg" style="height:200px;"  onClick="tesoura(0,3); placar();">
+<img src="pedra.jpg" style="height:200px;"   onClick="pedra(0,3); placar();">
+
+<center>
+<p id="ganho"></p>
+<p>Player &nbsp&nbsp&nbsp<font id=pontoPlayer>0</font> x <font id=pontoPC>&nbsp0</font>&nbsp&nbsp&nbsp PC</p>
+</center>
+</body>
+</html>
